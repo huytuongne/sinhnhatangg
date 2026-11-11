@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Bé Thư 20 Tuổi 🎂✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Pacifico&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffe6ea 50%, #fbc2eb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+
+        .font-title-cute {
+            font-family: 'Pacifico', cursive;
+        }
+
+        .font-hand-bold {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.25), 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .heart-beat {
+            animation: heartBeat 1.3s infinite ease-in-out;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .bg-heart {
+            position: absolute;
+            color: rgba(244, 114, 182, 0.35);
+            pointer-events: none;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-0 m-0 relative text-gray-800 min-h-screen bg-pink-100">
+
+    <!-- Floating Heart Animation Background -->
+    <div id="heartsContainer" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- Music Control Button -->
+    <button id="musicToggleBtn" onclick="toggleAudio()" class="fixed top-3 right-3 z-50 bg-white/90 backdrop-blur-md border border-pink-300 text-pink-600 p-2.5 rounded-full shadow-lg hover:bg-pink-100 transition duration-300 flex items-center justify-center active:scale-90">
+        <svg id="musicIconPlaying" class="w-5 h-5 animate-spin" style="animation-duration: 4s;" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <svg id="musicIconMuted" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c.29 0 .57.04.84.11l4.16 4.16C13.43 21.73 12.74 22 12 22c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V4.27l9.73 9.73-1.27 1.27L4.27 3zM14 7h4V3h-6v5.18l2 2V7z"/>
+        </svg>
+    </button>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7350c.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- STEP 1: INITIAL ENVELOPE COVER (MOBILE DESIGN) -->
+    <div id="envelopeScreen" class="z-20 w-[90%] max-w-sm bg-white/95 backdrop-blur-md rounded-3xl p-6 card-shadow border-2 border-pink-200 text-center transition-all duration-700 transform">
+        <div class="relative w-24 h-24 mx-auto mb-5">
+            <div class="absolute inset-0 bg-pink-200 rounded-full animate-ping opacity-30"></div>
+            <div class="relative z-10 w-24 h-24 bg-gradient-to-tr from-pink-400 to-rose-300 rounded-full flex items-center justify-center text-4xl shadow-md text-white heart-beat">
+                💖
+            </div>
+        </div>
+        
+        <h1 class="font-title-cute text-2xl text-rose-500 mb-6 leading-tight">
+            Gửi cục dàng của anh
+        </h1>
+
+        <button onclick="openCard()" class="w-full py-3 px-5 bg-gradient-to-r from-rose-400 via-pink-400 to-rose-400 text-white font-bold rounded-2xl shadow-lg hover:shadow-pink-300/50 hover:opacity-95 transition-all transform active:scale-95 flex items-center justify-center gap-2 text-base">
+            <span>Mở thiệp hoiii</span>
+            <span class="text-lg">💌</span>
+        </button>
+    </div>
+
+    <!-- STEP 2: MAIN BIRTHDAY CARD (FULLSCREEN MOBILE FIT) -->
+    <div id="cardScreen" class="hidden z-20 w-full min-h-screen bg-[#fff5f6] flex flex-col justify-between relative transition-all duration-700 transform scale-95 opacity-0">
+        
+        <!-- Action Toolbar Mobile -->
+        <div class="bg-pink-100/90 border-b border-pink-200 px-3 py-2 flex items-center justify-between text-xs sticky top-0 z-30">
+            <span class="text-pink-600 font-bold flex items-center gap-1">
+                <span>🎂</span> Thiệp Sinh Nhật Bé Thư
+            </span>
+            <button onclick="fireConfetti()" class="bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-full shadow transition flex items-center gap-1 text-xs font-semibold active:scale-95">
+                <span>🎉</span> Bắn pháo hoa
+            </button>
+        </div>
+
+        <!-- Fullscreen Card Image Display -->
+        <div class="flex-1 flex flex-col items-center justify-center w-full p-0">
+            <div class="relative w-full h-full flex items-center justify-center">
+                <!-- Direct Full Width Original Card Image -->
+                <img 
+                    src="https://lh3.googleusercontent.com/d/1qBaj09Yv2FBgDeUVsPkDJVk33s4PEixI" 
+                    id="originalCardImg"
+                    alt="Thiệp Sinh Nhật Nguyên Bản" 
+                    class="w-full h-auto object-cover transition-transform duration-300 cursor-pointer shadow-md"
+                    onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1qBaj09Yv2FBgDeUVsPkDJVk33s4PEixI&sz=w1200'; "
+                />
+            </div>
+        </div>
+
+        <!-- Mobile Footer Bar -->
+        <div class="bg-pink-50 text-center py-2 border-t border-pink-100 text-[11px] text-pink-400 font-medium">
+            💖 Chúc bé Thư tuổi 20 thật nhiều niềm vui và hạnh phúc! 💖
+        </div>
+    </div>
+
+    <script>
+        // Set user photo from uploaded image
+        const targetImageSrc = "image_db3eb4.jpg"; // Reference to uploaded photo
+        
+        // Background Floating Hearts
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['💖', '💕', '🌸', '✨', '💗', '❤️'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Music Control Logic
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIconPlaying = document.getElementById('musicIconPlaying');
+        const musicIconMuted = document.getElementById('musicIconMuted');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIconPlaying.classList.add('hidden');
+                musicIconMuted.classList.remove('hidden');
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicIconPlaying.classList.remove('hidden');
+                    musicIconMuted.classList.add('hidden');
+                    isPlaying = true;
+                }).catch(e => console.log("Audio play error:", e));
+            }
+        }
+
+        // Open Birthday Card Logic
+        function openCard() {
+            // Try playing audio automatically on open card
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIconPlaying.classList.remove('hidden');
+                musicIconMuted.classList.add('hidden');
+            }).catch(() => {
+                // Ignore autoplay block
+            });
+
+            const env = document.getElementById('envelopeScreen');
+            const card = document.getElementById('cardScreen');
+
+            env.classList.add('opacity-0', 'scale-90');
+            
+            setTimeout(() => {
+                env.classList.add('hidden');
+                card.classList.remove('hidden');
+                
+                // Smooth transition in
+                setTimeout(() => {
+                    card.classList.remove('scale-95', 'opacity-0');
+                    card.classList.add('scale-100', 'opacity-100');
+                    fireConfetti();
+                }, 50);
+            }, 500);
+        }
+
+        // Add Click listener on Card Image to trigger Confetti
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.getElementById('originalCardImg');
+            if (img) {
+                img.addEventListener('click', fireConfetti);
+            }
+        });
+
+        // Fireworks & Confetti Effect
+        function fireConfetti() {
+            if (typeof confetti === 'function') {
+                // Left & Right bursts
+                confetti({
+                    particleCount: 70,
+                    spread: 60,
+                    origin: { y: 0.7, x: 0.3 },
+                    colors: ['#f472b6', '#fb7185', '#ffd1dc', '#ffffff']
+                });
+                confetti({
+                    particleCount: 70,
+                    spread: 60,
+                    origin: { y: 0.7, x: 0.7 },
+                    colors: ['#f472b6', '#fb7185', '#ffd1dc', '#ffffff']
+                });
+            }
+        }
+    </script>
+</body>
+</html>
